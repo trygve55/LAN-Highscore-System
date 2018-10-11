@@ -1,6 +1,7 @@
 {
-	"name": "NodeLudo",
+	"name": "LAN Highscore System",
 	"version": "0.0.1",
+	"scripts": { "start" : "node main.js" },
 	"dependencies": {
 		"body-parser": "^1.18.2",
 		"ejs": "^2.5.7",
