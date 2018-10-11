@@ -12,7 +12,7 @@ module.exports = {
         db.get("SELECT * FROM Games WHERE game_id = ?",[gameId],(err, game) => {
 
             if (err || game === undefined)
-                next(err, game);
+                return next(err, game);
 
             db.all("SELECT score_id, score, player_name FROM Scores WHERE game_id = ? ORDER BY score DESC",[gameId] , function (err, scores) {
                 game['scores'] = (scores === undefined) ? [] : scores;
@@ -46,8 +46,8 @@ module.exports = {
         });
     },
     addHighscore : function(gameId, score, playerName, next) {
-        if (playerName.length < 1)
-            next(-1);
+        if (playerName.length == 0)
+            return next(-1);
 
         db.run("INSERT INTO Scores (game_id, score, player_name) VALUES (?, ?, ?)", [gameId, score, playerName], function (err) {
             next(err, this.changes);

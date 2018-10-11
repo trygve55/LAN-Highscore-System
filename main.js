@@ -2,7 +2,8 @@ var express = require('express'),
 	path = require('path'),
 	bodyParser = require('body-parser'),
     config = require('./config'),
-    dbc = require('./databaseController');
+    dbc = require('./databaseController'),
+    jwt    = require('jsonwebtoken');
 
 var app = require('express')()
   , server = require('http').createServer(app)
@@ -32,7 +33,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/game/:gameId', function (req, res) {
-    dbc.getGame(req.params.gameId,function (err, game) {
+    dbc.getGame(req.params.gameId, function (err, game) {
         if (err)
             return res.status(500).send();
 
@@ -49,6 +50,49 @@ app.get('/api/games', function (req, res) {
 
         return res.json(games);
     });
+});
+
+//Get game
+app.get('/api/games/:gameId', function (req, res) {
+    dbc.getGame(req.params.gameId, function (err, game) {
+        if (err)
+            return res.status(500).send();
+
+        if (game === undefined)
+            return res.status(404).send();
+
+        return res.json(game);
+    })
+});
+
+//Login send token to client
+app.post('/api/login', function (req, res) {
+    if (req.body.username === "test" && req.body.password === "test") {
+        var userId = 0;
+
+        var newToken = jwt.sign({'userId': userId, 'role': 0}, config.secret, {
+            expiresIn: "1 days"
+        });
+        return res.json({'token' : newToken});
+    } else {
+        return res.status(403).send();
+    }
+});
+
+//Validate token
+app.use('/api/games(/*)?', function (req, res, next) {
+    if (req.query.token) {
+        jwt.verify(req.query.token, config.secret, function(err, decoded) {
+            if (err)
+                res.status(500).send();
+            else {
+                req.decoded = decoded;
+
+                next();
+            }
+        });
+    } else
+        res.status(403).send();
 });
 
 //Add game
@@ -100,27 +144,16 @@ app.delete('/api/games', function (req, res) {
     })
 });
 
-//Get game
-app.get('/api/games/:gameId', function (req, res) {
-    dbc.getGame(req.params.gameId, function (err, game) {
-        if (err)
-            return res.status(500).send();
-
-        if (game === undefined)
-            return res.status(404).send();
-
-        return res.json(game);
-    })
-});
-
 //Add highscore to game
 app.post('/api/games/:gameId', function (req, res) {
-    if (req.body.player_name.length < config.minPlayerNameLength)
+    if (req.body.playerName.length < config.minPlayerNameLength)
         return res.status(400).send();
 
-    dbc.addHighscore(req.params.gameId, req.body.score, req.body.player_name, function (err, changes) {
-        if (err)
+    dbc.addHighscore(req.params.gameId, req.body.score, req.body.playerName, function (err, changes) {
+        if (err) {
+            console.log(err);
             return res.status(500).send();
+        }
 
         if (changes === 0)
             return res.status(404).send();
@@ -151,7 +184,3 @@ app.delete('/api/games/:gameId/:highscoreId', function (req, res) {
         return res.send();
     });
 });
-
-function sendUpdate(gameId) {
-    //io.emit('update', );
-}

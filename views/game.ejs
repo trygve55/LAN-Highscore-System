@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><%= game.game_name %></title>
+    <title><%= game.game_name + " - Highscores" %></title>
+    <script type="text/javascript" src="/scripts.js"></script>
 </head>
 <body>
+<h1><%= game.game_name + " - Highscores" %></h1>
+<table style="width:100%">
+    <tr>
+        <th>Rank</th><th>Highscore</th><th>Record holder</th>
+    </tr>
 
+    <% for (var i = 0; i < game.scores.length; i++) { %>
+        <tr>
+            <td><%= i + 1 %></td><td><%= game.scores[i].score %></td><td><%= game.scores[i].player_name %></td>
+        </tr>
+    <% } %>
+</table>
 </body>
 </html>
