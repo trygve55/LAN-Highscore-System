@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th>Games</th><th>Highest score</th><th>Record holder</th>
+        </tr>
+
+        <% for (var i = 0; i < games.length; /* I save the data in a variable 'quotation', I don't know how you named your variable  */  i++) { %>
+            <tr href="#">
+                <td><%= games[i].game_name %></td><td><%= games[i].score %></td><td><%= games[i].player_name %></td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>
