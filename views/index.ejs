@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <title><%= title %></title>
     <script type="text/javascript" src="/scripts.js"></script>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+<h1><%= title %></h1>
 <body>
-
-    <table style="width:100%">
+    <table class="mainTable">
         <tr>
             <th>Games</th><th>Highest score</th><th>Record holder</th>
         </tr>
 
         <% for (var i = 0; i < games.length; i++) { %>
             <tr onclick="document.location='game/<%= games[i].game_id %>'">
-                <td><%= games[i].game_name %></td><td><%= games[i].score %></td><td><%= games[i].player_name %></td>
+                <td class="center"><%= games[i].game_name %></td><td><%= games[i].score %></td><td><%= games[i].player_name %></td>
+            </tr>
+        <% } %>
+        <% if (games.length === 0) { %>
+            <tr>
+                <td></td><td>No games added</td>
             </tr>
         <% } %>
     </table>

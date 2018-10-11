@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
        if (err)
            return res.status(500).send();
 
-       res.render('index', {'games' : games, 'title' : 'test'});
+       res.render('index', {'games' : games, 'title' : 'LAN Highscores'});
     });
 });
 
@@ -36,6 +36,9 @@ app.get('/game/:gameId', function (req, res) {
     dbc.getGame(req.params.gameId, function (err, game) {
         if (err)
             return res.status(500).send();
+
+        if (game === undefined)
+            return res.status(404).send();
 
         res.render('game', {'game' : game});
     });

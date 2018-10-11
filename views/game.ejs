@@ -4,19 +4,30 @@
     <meta charset="UTF-8">
     <title><%= game.game_name + " - Highscores" %></title>
     <script type="text/javascript" src="/scripts.js"></script>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <h1><%= game.game_name + " - Highscores" %></h1>
-<table style="width:100%">
+<table class="mainTable">
     <tr>
-        <th>Rank</th><th>Highscore</th><th>Record holder</th>
+        <th class="rank">Rank</th><th>Highscore</th><th>Record holder</th><th class="datetime">Added</th>
     </tr>
 
     <% for (var i = 0; i < game.scores.length; i++) { %>
         <tr>
-            <td><%= i + 1 %></td><td><%= game.scores[i].score %></td><td><%= game.scores[i].player_name %></td>
+            <td class="rank"><%= i + 1 %></td><td><%= game.scores[i].score %></td><td><%= game.scores[i].player_name %></td><td class="datetime"><%= game.scores[i].timestamp %></td>
         </tr>
     <% } %>
+    <% if (game.scores.length === 0) { %>
+        <tr>
+            <td></td><td>No highscores added</td>
+        </tr>
+    <% } %>
+    <tr id="addNew" class="hidden">
+        <td>Add new</td><td><input type="tel" id="newHighscore" placeholder="1234" required></td><td><input type="text" id="newPlayerName" placeholder="Player name" required></td><td><button onclick="addNewHighscore()">Add</button></td>
+    </tr>
 </table>
+
+<div class="mainTable"></div>
 </body>
 </html>

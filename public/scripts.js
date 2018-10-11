@@ -59,7 +59,7 @@ function removeHighscore(highscoreId) {
 }
 
 function removeAllGames() {
-    fetch('/api/games/reset?token=' + localStorage.token, {
+    fetch('/api/games?token=' + localStorage.token, {
         method: 'DELETE',
         headers:{
             'Content-Type': 'application/json'
@@ -103,8 +103,15 @@ function login(username, password) {
     );
 }
 
+function addNewHighscore() {
+    addHighscore(document.getElementById("newHighscore").value, document.getElementById("newPlayerName").value);
+    location.reload();
+}
+
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
-
+        if (localStorage.token) {
+            document.getElementById("addNew").classList.remove("hidden");
+        }
     }
 };

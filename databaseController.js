@@ -14,7 +14,7 @@ module.exports = {
             if (err || game === undefined)
                 return next(err, game);
 
-            db.all("SELECT score_id, score, player_name FROM Scores WHERE game_id = ? ORDER BY score DESC",[gameId] , function (err, scores) {
+            db.all("SELECT score_id, score, player_name, timestamp FROM Scores WHERE game_id = ? ORDER BY score DESC",[gameId] , function (err, scores) {
                 game['scores'] = (scores === undefined) ? [] : scores;
                 next(err, game);
             });
@@ -66,7 +66,7 @@ db.serialize(function () {
     db.run("DROP TABLE IF EXISTS Games");
     db.run("DROP TABLE IF EXISTS Scores");
     db.run("CREATE TABLE Games (game_id INTEGER PRIMARY KEY AUTOINCREMENT, game_name text NOT NULL, game_logo_url text, game_background_url)");
-    db.run("CREATE TABLE Scores (score_id INTEGER PRIMARY KEY AUTOINCREMENT, game_id INTEGER NOT NULL, score INTEGER NOT NULL, player_name text NOT NULL, FOREIGN KEY(game_id) REFERENCES Games(game_id))");
+    db.run("CREATE TABLE Scores (score_id INTEGER PRIMARY KEY AUTOINCREMENT, game_id INTEGER NOT NULL, score INTEGER NOT NULL, player_name text NOT NULL, timestamp DATETIME DEFAULT (datetime('now','localtime')), FOREIGN KEY(game_id) REFERENCES Games(game_id))");
     db.run("CREATE TABLE Users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, role INTEGER NOT NULL, username text NOT NULL, salt text NOT NULL, hash text NOT NULL)");
     db.run("CREATE TABLE Settings (setting text PRIMARY KEY, value text NOT NULL)");
     db.run("INSERT INTO Settings (setting, value) VALUES (?, ?)", ['main_banner_url', 'https://tihlde.org/assets/2017/03/nyeste-banner-liten-3.png']);
