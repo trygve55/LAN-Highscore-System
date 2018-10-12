@@ -40,6 +40,7 @@ tr {
 }
 h1 {
     text-align: center;
+
 }
 .rank {
     width: 20px;
@@ -47,6 +48,36 @@ h1 {
 .datetime {
     width: 80px;
 }
-.hidden {
+.hiddenAdmin {
     display: none;
+}
+.removebutton {
+    color: red;
+}
+.top {
+    display: inline;
+}
+#back {
+    float: left;
+    left: 0;
+}
+#showLoginButton {
+    float:right;
+}
+.loginForm {
+
+}
+.loginInput {
+    width: 37.23%;
+}
+#loginButton {
+    width: 20%;
+}
+#loginFormWindow {
+    margin: auto;
+    width: 30%;
+    box-shadow: 2px 0 0 -2px #000;
+    box-shadow: 5px 0 0 -5px #000;
+    box-shadow: 0 0 2px 0 #000;
+    border-right: 0px;
 }

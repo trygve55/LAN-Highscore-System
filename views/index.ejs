@@ -6,7 +6,10 @@
     <script type="text/javascript" src="/scripts.js"></script>
     <link rel="stylesheet" href="/styles.css">
 </head>
-<h1><%= title %></h1>
+<div class = mainTable>
+    <a id="showLoginButton" alt="View all games" title="View all games" onclick="showLoginLogout()">Login</a>
+    <h1><%= title %></h1>
+</div>
 <body>
     <table class="mainTable">
         <tr>
@@ -15,7 +18,10 @@
 
         <% for (var i = 0; i < games.length; i++) { %>
             <tr onclick="document.location='game/<%= games[i].game_id %>'">
-                <td class="center"><%= games[i].game_name %></td><td><%= games[i].score %></td><td><%= games[i].player_name %></td>
+                <td class="center"><%= games[i].game_name %></td>
+                <td><%= games[i].score %></td>
+                <td><%= games[i].player_name %></td>
+                <td class="hiddenAdmin removebutton" alt="Remove Game" title="Remove Game" onclick="removeOldGame(event, <%= games[i].game_id %>)">X</td>
             </tr>
         <% } %>
         <% if (games.length === 0) { %>
@@ -23,6 +29,19 @@
                 <td></td><td>No games added</td>
             </tr>
         <% } %>
+        <tr id="addNew" class="hiddenAdmin">
+            <td>Add new</td>
+            <td><input type="text" id="newGame" class="tableInput" placeholder="Game name..." required></td>
+            <td><button id="submitButton" onclick="addNewGame()">Add</button></td>
+        </tr>
     </table>
+
+    <div id="loginForm" style="display: none" class="mainTable">
+        <div id="loginFormWindow">
+            <input id="username" type="text" class="loginInput" placeholder="Username">
+            <input id="password" type="password" class="loginInput" placeholder="Password">
+            <button id="loginButton" onclick="sendLogin()">Login</button>
+        </div>
+    </div>
 </body>
 </html>

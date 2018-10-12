@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1><%= game.game_name + " - Highscores" %></h1>
+<div class = mainTable>
+    <a id="back" alt="View all games" title="View all games" onclick="document.location.href='/'">Back </a>
+    <a id="showLoginButton" alt="View all games" title="View all games" onclick="showLoginLogout()">Login</a>
+    <h1><%= game.game_name + " - Highscores" %></h1>
+</div>
 <table class="mainTable">
     <tr>
         <th class="rank">Rank</th><th>Highscore</th><th>Record holder</th><th class="datetime">Added</th>
@@ -15,7 +19,11 @@
 
     <% for (var i = 0; i < game.scores.length; i++) { %>
         <tr>
-            <td class="rank"><%= i + 1 %></td><td><%= game.scores[i].score %></td><td><%= game.scores[i].player_name %></td><td class="datetime"><%= game.scores[i].timestamp %></td>
+            <td class="rank"><%= i + 1 %></td>
+            <td><%= game.scores[i].score %></td>
+            <td><%= game.scores[i].player_name %></td>
+            <td class="datetime"><%= game.scores[i].timestamp %></td>
+            <td class="hiddenAdmin removebutton" alt="Remove Game" title="Remove Game" onclick="removeOldHighscore(<%= game.scores[i].score_id %>)">X</td>
         </tr>
     <% } %>
     <% if (game.scores.length === 0) { %>
@@ -24,10 +32,19 @@
         </tr>
     <% } %>
     <tr id="addNew" class="hidden">
-        <td>Add new</td><td><input type="tel" id="newHighscore" placeholder="1234" required></td><td><input type="text" id="newPlayerName" placeholder="Player name" required></td><td><button onclick="addNewHighscore()">Add</button></td>
+        <td>Add new</td>
+        <td><input type="tel" id="newHighscore" class="tableInput" placeholder="1234" required onkeyup="this.value=this.value.replace(/[^\d]/,'')"></td>
+        <td><input type="text" id="newPlayerName" class="tableInput" placeholder="Player name" required></td>
+        <td><button id="submitButton" onclick="addNewHighscore()">Add</button></td>
     </tr>
 </table>
 
-<div class="mainTable"></div>
+<div id="loginForm" style="display: none" class="mainTable">
+    <div id="loginFormWindow">
+        <input id="username" type="text" class="loginInput" placeholder="Username">
+        <input id="password" type="password" class="loginInput" placeholder="Password">
+        <button id="loginButton" onclick="sendLogin()">Login</button>
+    </div>
+</div>
 </body>
 </html>
