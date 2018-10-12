@@ -8,12 +8,12 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-<div class = mainTable>
+<div class = center>
     <a id="back" alt="View all games" title="View all games" onclick="document.location.href='/'">Back </a>
     <a id="showLoginButton" alt="View all games" title="View all games" onclick="showLoginLogout()">Login</a>
     <h1><%= game.game_name + " - Highscores" %></h1>
 </div>
-<table class="mainTable">
+<table class="center mainColor">
     <tr>
         <th class="rank">Rank</th><th>Highscore</th><th>Record holder</th><th class="datetime">Added</th>
     </tr>
@@ -40,7 +40,7 @@
     </tr>
 </table>
 
-<div id="loginForm" style="display: none" class="mainTable">
+<div id="loginForm" style="display: none" class="center mainColor">
     <div id="loginFormWindow">
         <input id="username" type="text" class="loginInput" placeholder="Username">
         <input id="password" type="password" class="loginInput" placeholder="Password">

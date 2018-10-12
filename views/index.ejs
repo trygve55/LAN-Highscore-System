@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="/styles.css">
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 </head>
-<div class = mainTable>
+<div class = center>
     <a id="showLoginButton" alt="View all games" title="View all games" onclick="showLoginLogout()">Login</a>
     <h1><%= title %></h1>
 </div>
 <body>
-    <table class="mainTable">
+    <table class="center mainColor">
         <tr>
             <th>Games</th><th>Highest score</th><th>Record holder</th>
         </tr>
@@ -37,7 +37,7 @@
         </tr>
     </table>
 
-    <div id="loginForm" style="display: none" class="mainTable">
+    <div id="loginForm" style="display: none" class="center mainColor">
         <div id="loginFormWindow">
             <input id="username" type="text" class="loginInput" placeholder="Username">
             <input id="password" type="password" class="loginInput" placeholder="Password">

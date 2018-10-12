@@ -1,27 +1,33 @@
-.mainTable {
+body {
+    background-color: dimgrey;
+}
+.center {
     width: 40%;
     margin-left: 30%;
 }
+.mainColor {
+    background-color: lightgray;
+}
 @media only screen and (max-width: 1300px) {
-    .mainTable {
+    .center {
         width: 50%;
         margin-left: 25%;
     }
 }
 @media only screen and (max-width: 1000px) {
-    .mainTable {
+    .center {
         width: 60%;
         margin-left: 20%;
     }
 }
 @media only screen and (max-width: 800px) {
-    .mainTable {
+    .center {
         width: 70%;
         margin-left: 15%;
     }
 }
 @media only screen and (max-width: 600px) {
-    .mainTable {
+    .center {
         width: 90%;
         margin-left: 5%;
     }
@@ -43,7 +49,7 @@ tr {
 }
 h1 {
     text-align: center;
-
+    text-shadow: 2px 2px #890b0c;
 }
 .rank {
     width: 20px;
