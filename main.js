@@ -107,6 +107,7 @@ app.post('/api/games', function (req, res) {
         if (changes === 0)
             return res.status(404).send();
 
+        io.emit('update', req.params.gameId);
         return res.send();
     });
 });
@@ -120,6 +121,7 @@ app.put('/api/games/:gameId', function (req, res) {
         if (changes === 0)
             return res.status(404).send();
 
+        io.emit('update', req.params.gameId);
         return res.send();
     });
 });
@@ -133,6 +135,7 @@ app.delete('/api/games/:gameId', function (req, res) {
         if (changes === 0)
             return res.status(404).send();
 
+        io.emit('update', req.params.gameId);
         return res.send();
     });
 });
@@ -143,6 +146,7 @@ app.delete('/api/games', function (req, res) {
         if (err)
             return res.status(500).send();
 
+        io.emit('update', req.params.gameId);
         return res.send();
     })
 });
@@ -161,6 +165,7 @@ app.post('/api/games/:gameId', function (req, res) {
         if (changes === 0)
             return res.status(404).send();
 
+        io.emit('update', req.params.gameId);
         return res.send();
     });
 });
@@ -171,6 +176,7 @@ app.delete('/api/games/:gameId/reset', function (req, res) {
         if (err)
             return res.status(500).send();
 
+        io.emit('update', req.params.gameId);
         return res.send();
     });
 });
@@ -184,6 +190,7 @@ app.delete('/api/games/:gameId/:highscoreId', function (req, res) {
         if (changes === 0)
             return res.status(404).send();
 
+        io.emit('update', req.params.gameId);
         return res.send();
     });
 });

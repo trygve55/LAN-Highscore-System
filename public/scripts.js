@@ -1,3 +1,5 @@
+var socket;
+
 function getGameId() {
     return window.location.pathname.split('/')[2];
 }
@@ -161,6 +163,18 @@ function logout() {
 
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
+
+        setTimeout(function () {
+            socket = io(window.location.host);
+
+            socket.on('update', function(msg){
+                console.log(msg);
+                if (location.pathname === '/' || msg == getGameId()) {
+                    location.reload();
+                }
+            });
+        }, 200);
+
         if (localStorage.token) {
             var elm = document.getElementsByClassName("hiddenAdmin");
             for (let i = 0; i < elm.length;) {
