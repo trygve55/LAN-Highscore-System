@@ -38,6 +38,9 @@ tr {
     border-right: 0px;
     height: 40px;
 }
+.contentRow:hover {
+    background-color: lightgoldenrodyellow;
+}
 h1 {
     text-align: center;
 
@@ -61,8 +64,16 @@ h1 {
     float: left;
     left: 0;
 }
+#back:hover {
+    color: blue;
+    text-decoration: underline;
+}
 #showLoginButton {
     float:right;
+}
+#showLoginButton:hover {
+    color: blue;
+    text-decoration: underline;
 }
 .loginForm {
 

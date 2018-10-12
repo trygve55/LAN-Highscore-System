@@ -18,7 +18,7 @@
     </tr>
 
     <% for (var i = 0; i < game.scores.length; i++) { %>
-        <tr>
+        <tr class="contentRow">
             <td class="rank"><%= i + 1 %></td>
             <td><%= game.scores[i].score %></td>
             <td><%= game.scores[i].player_name %></td>
@@ -32,7 +32,7 @@
         </tr>
     <% } %>
     <tr id="addNew" class="hidden">
-        <td>Add new</td>
+        <td>New</td>
         <td><input type="tel" id="newHighscore" class="tableInput" placeholder="1234" required onkeyup="this.value=this.value.replace(/[^\d]/,'')"></td>
         <td><input type="text" id="newPlayerName" class="tableInput" placeholder="Player name" required></td>
         <td><button id="submitButton" onclick="addNewHighscore()">Add</button></td>

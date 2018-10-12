@@ -101,7 +101,7 @@ function login(username, password) {
     ).then(
         test => location.reload()
     ).catch(
-        error => console.log(error) // Handle the error response object
+        error => alert('Login failed.') // Handle the error response object
     );
 }
 
