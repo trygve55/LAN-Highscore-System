@@ -61,19 +61,8 @@ module.exports = {
 };
 
 db.serialize(function () {
-    /*db.run("DROP TABLE IF EXISTS Settings");
-    db.run("DROP TABLE IF EXISTS Users");
-    db.run("DROP TABLE IF EXISTS Games");
-    db.run("DROP TABLE IF EXISTS Scores");*/
     db.run("CREATE TABLE IF NOT EXISTS Games (game_id INTEGER PRIMARY KEY AUTOINCREMENT, game_name text NOT NULL, game_logo_url text, game_background_url)");
     db.run("CREATE TABLE IF NOT EXISTS Scores (score_id INTEGER PRIMARY KEY AUTOINCREMENT, game_id INTEGER NOT NULL, score INTEGER NOT NULL, player_name text NOT NULL, timestamp DATETIME DEFAULT (datetime('now','localtime')), FOREIGN KEY(game_id) REFERENCES Games(game_id))");
-    db.run("CREATE TABLE IF NOT EXISTS Users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, role INTEGER NOT NULL, username text NOT NULL, salt text NOT NULL, hash text NOT NULL)");
-    db.run("CREATE TABLE IF NOT EXISTS Settings (setting text PRIMARY KEY, value text NOT NULL)");
-    /*
-    db.run("INSERT INTO Settings (setting, value) VALUES (?, ?)", ['main_banner_url', 'https://tihlde.org/assets/2017/03/nyeste-banner-liten-3.png']);
-    db.run("INSERT INTO Settings (setting, value) VALUES (?, ?)", ['lan_name', 'Tihlde LAN 2018']);
-    db.run("INSERT INTO Games (game_name) VALUES (?)", ['BeatSaber']);
-    db.run("INSERT INTO Games (game_name) VALUES (?)", ['Fruit Ninja']);
-    db.run("INSERT INTO Scores (game_id, score, player_name) VALUES (?, ?, ?)", [1, 1337, 'Trygve55']);
-    db.run("INSERT INTO Scores (game_id, score, player_name) VALUES (?, ?, ?)", [1, 1037, 'Trygve55']);*/
+    //db.run("CREATE TABLE IF NOT EXISTS Users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, role INTEGER NOT NULL, username text NOT NULL, salt text NOT NULL, hash text NOT NULL)");
+    //db.run("CREATE TABLE IF NOT EXISTS Settings (setting text PRIMARY KEY, value text NOT NULL)");
 });

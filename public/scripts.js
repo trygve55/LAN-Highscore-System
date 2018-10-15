@@ -138,13 +138,9 @@ function showLoginLogout() {
         var inputsLogin = document.getElementsByClassName('loginInput');
 
         for(var i = 0; i < inputsLogin.length; i++) {
-            console.log("test3");
             inputsLogin[i].addEventListener("keyup", function(event) {
-                console.log('test');
-//                    event.preventDefault();
-                if (event.keyCode === 13) {
+                if (event.keyCode === 13)
                     document.getElementById("loginButton").click();
-                }
             });
         }
 
@@ -159,6 +155,22 @@ function sendLogin() {
 function logout() {
     localStorage.removeItem('token');
     location.reload();
+}
+
+function checkLogin() {
+    fetch('/api/login?token=' + localStorage.token, {
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(
+        response => {
+            if (response.status === 403)
+                logout();
+        }
+    ).catch(
+        error => console.log(error)
+    );
 }
 
 document.onreadystatechange = () => {
@@ -176,6 +188,9 @@ document.onreadystatechange = () => {
         }, 200);
 
         if (localStorage.token) {
+
+            checkLogin();
+
             var elm = document.getElementsByClassName("hiddenAdmin");
             for (let i = 0; i < elm.length;) {
                 elm[0].classList.remove("hiddenAdmin")

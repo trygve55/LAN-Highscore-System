@@ -68,14 +68,27 @@ app.get('/api/games/:gameId', function (req, res) {
     })
 });
 
+app.get('/api/login', function (req, res) {
+    if (req.query.token) {
+        jwt.verify(req.query.token, config.secret, function(err, decoded) {
+            if (err)
+                res.status(403).send();
+            else {
+                res.status(200).send();
+            }
+        });
+    } else
+        res.status(403).send();
+});
+
 //Login send token to client
 app.post('/api/login', function (req, res) {
-    if (req.body.username === "test" && req.body.password === "test") {
-        var userId = 0;
+    if (req.body.username === config.username && req.body.password === config.password) {
 
-        var newToken = jwt.sign({'userId': userId, 'role': 0}, config.secret, {
+        var newToken = jwt.sign({'role': 0}, config.secret, {
             expiresIn: "1 days"
         });
+
         return res.json({'token' : newToken});
     } else {
         return res.status(403).send();

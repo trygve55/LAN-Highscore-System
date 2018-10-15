@@ -2,7 +2,9 @@ const secret = Math.random().toString(36).substring(7);
 
 
 module.exports = {
-    secret: "test",
+    secret,
     port: 8080,
-    minPlayerNameLength: 3
+    minPlayerNameLength: 3,
+    username: "admin",      //chnage this!
+    password: "admin"       //and this!
 };

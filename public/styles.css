@@ -1,12 +1,12 @@
 body {
-    background-color: dimgrey;
+    background-color: #0f233c;
 }
 .center {
     width: 40%;
     margin-left: 30%;
 }
 .mainColor {
-    background-color: lightgray;
+    background-color: #bcbcbc;
 }
 @media only screen and (max-width: 1300px) {
     .center {
@@ -50,6 +50,7 @@ tr {
 h1 {
     text-align: center;
     text-shadow: 2px 2px #890b0c;
+    color: lightgray;
 }
 .rank {
     width: 20px;
