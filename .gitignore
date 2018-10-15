@@ -61,4 +61,3 @@ typings/
 .next
 .idea/
 database.db
-package-lock.json
