@@ -18,7 +18,7 @@
         </tr>
 
         <% for (var i = 0; i < games.length; i++) { %>
-            <tr class="contentRow" onclick="document.location='game/<%= games[i].game_id %>'">
+            <tr class="contentRow" onclick="document.location='/game/<%= games[i].game_id %>'">
                 <td class="center"><%= games[i].game_name %></td>
                 <td><%= games[i].score %></td>
                 <td><%= games[i].player_name %></td>
