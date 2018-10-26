@@ -1,7 +1,7 @@
 var socket;
 
 function getGameId() {
-    return window.location.pathname.split('/')[2];
+    return window.location.pathname.split("/")[2];
 }
 
 function addHighscore(highscore, playerName) {
