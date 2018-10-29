@@ -19,4 +19,5 @@ npm start
 
 ### Live example
 You can view a live verson at https://hybel.ddns.net/score
+
 Or you can try the admin features at https://hybel.ddns.net/scoreadmin (Username and password is admin)
