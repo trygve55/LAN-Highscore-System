@@ -1,6 +1,6 @@
 # LAN-Highscore-System
 
-Before we start you need npm, NodeJS and git.
+Before we start you need npm, NodeJS and git. 
 
 ### Install
 ```
