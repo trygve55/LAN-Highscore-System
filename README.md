@@ -18,8 +18,6 @@ npm start
 ```
 
 ### Live example
-You can view a live verson at https://hybel.ddns.net/score
+You can view a live verson at https://hybel.ddns.net/scoreadmin
 
-Or you can try the admin features at https://hybel.ddns.net/scoreadmin 
-
-The username and password is admin and the server will be reset every half hour.
+You can try the admin features, the username and password is admin. The server will be reset every 20 minutes.
